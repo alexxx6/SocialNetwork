@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="well bs-component col-lg-6 col-lg-offset-3">
+        <form class="form-horizontal" name="loginForm" ng-controller="AuthenticationController" ng-submit="login()">
+            <fieldset>
+                <legend>Login</legend>
+                <div class="form-group">
+                    <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputUsername" ng-model="loginData.username" placeholder="Username" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="inputPassword" ng-model="loginData.password" placeholder="Password" required="required">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <a href="/#/register" class="btn btn-info col-lg-offset-4">Register Here...</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

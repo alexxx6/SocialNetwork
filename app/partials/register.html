@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="well col-lg-6 col-lg-offset-3">
+        <form class="form-horizontal" name="registerForm" ng-controller="AuthenticationController" ng-submit="register()">
+            <fieldset>
+                <legend>Register</legend>
+                <div class="form-group">
+                    <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputUsername" ng-model="registerData.username" placeholder="Username" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="inputPassword" ng-model="registerData.password" placeholder="Password" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="col-lg-2 control-label">Confirm Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="confirmPassword" ng-model="registerData.confirmPassword" placeholder="Confirm Password" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-2 control-label">Name</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputName" ng-model="registerData.name" placeholder="Name" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input type="email" class="form-control" id="inputEmail" ng-model="registerData.email" placeholder="Email" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Gender</label>
+                    <div class="col-lg-10">
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" ng-model="registerData.gender" value="Male" />
+                                Male
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label for="female">
+                                <input type="radio" id="female" ng-model="registerData.gender" value="Female" />
+                                Female
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label for="other">
+                                <input type="radio" id="other" ng-model="registerData.gender" value="Other"/>
+                                Other
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a href="/#/" class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <a href="/#/login" class="btn btn-info col-lg-offset-4">Login Here...</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

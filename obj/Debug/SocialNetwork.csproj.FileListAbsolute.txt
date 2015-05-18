@@ -1,0 +1,6 @@
+D:\10-JS-Frameworks-With-AngularJS\SocialNetwork\SocialNetwork\bin\SocialNetwork.dll.config
+D:\10-JS-Frameworks-With-AngularJS\SocialNetwork\SocialNetwork\bin\SocialNetwork.dll
+D:\10-JS-Frameworks-With-AngularJS\SocialNetwork\SocialNetwork\bin\SocialNetwork.pdb
+D:\10-JS-Frameworks-With-AngularJS\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.csprojResolveAssemblyReference.cache
+D:\10-JS-Frameworks-With-AngularJS\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.dll
+D:\10-JS-Frameworks-With-AngularJS\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.pdb
