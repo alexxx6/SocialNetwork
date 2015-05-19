@@ -60,6 +60,7 @@
     <Content Include="app\css\bootstrap.css" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\controllers\AuthenticationController.js" />
+    <Content Include="app\js\controllers\MainController.js" />
     <Content Include="app\js\services\postServices.js" />
     <Content Include="app\js\services\authentication.js" />
     <Content Include="app\js\services\notifyService.js" />
@@ -2278,6 +2279,7 @@
     <Content Include="app\lib\angular\i18n\angular-locale_zu-za.js" />
     <Content Include="app\lib\angular\i18n\angular-locale_zu.js" />
     <Content Include="app\lib\angular\version.txt" />
+    <Content Include="app\lib\jquery.noty.js" />
     <Content Include="app\partials\userHome.html" />
     <Content Include="app\partials\login.html" />
     <Content Include="app\partials\register.html" />

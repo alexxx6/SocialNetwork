@@ -1,7 +1,7 @@
 'use strict';
 
 socialNetwork.controller('AuthenticationController', function ($scope, $location, $route,
-                        authentication, mainData, adServices, adminServices, notifyService) {
+                        authentication, notifyService) {
 
     var ClearData = function () {
         $scope.loginData = "";
@@ -13,7 +13,7 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
     $scope.login = function () {
         authentication.Login($scope.loginData,
             function (serverData) {
-                notifyService.showInfo("Successful Login!");
+                //notifyService.showInfo("Successful Login!");
                 authentication.SetCredentials(serverData);
                 ClearData();
                 $location.path('/user/home');
@@ -64,18 +64,6 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
         notifyService.showInfo("Successful Logout!");
         ClearData();
         authentication.ClearCredentials();
-        mainData.clearParams();
         $route.reload();
     };
-
-    $scope.clear = function () {
-        mainData.clearParams();
-        adminServices.clearParams();
-        $route.reload();
-    };
-
-    $scope.clearStatus = function () {
-        adServices.clearParams();
-        $route.reload();
-    }
 });

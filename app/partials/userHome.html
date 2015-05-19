@@ -1,6 +1,75 @@
 ﻿<div class="container">
-    <div class="well col-lg-4 aside-nav col-sm-12"></div>
+    <div class="well col-lg-4 aside-nav col-sm-12 text-center">
+        <div class="col-lg-12">
+            <img ng-src="{{profileImageData || '/img/default.jpg'}}" class="img-circle" width="200" height="200">
+            <a href="#"><h1>{{username}}</h1></a>
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-home"></span>
+            </button>
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-wrench"></span>
+            </button>
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-log-out"></span>
+            </button>
+        </div>
+        <div class="col-lg-12 hidden-sm">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Frieds - total: <a href="#/friends">{{count}}</a>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <a href="#" class="thumbnail">
+                        <img ng-src="{{friendImg}}" alt="friendImg" width="50" height="50">
+                        {{friendName}}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-sm-4 pull-right">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Friend's username">
+                <span class="input-group-addon glyphicon glyphicon-search"></span>
+            </div>
+        </div>
+    </div>
     <div class="col-lg-8 col-sm-12">
-        <div class="col-lg-10 jumbotron" ng-repeat=""></div>
+        <div class="well-lg">
+            <div class="row">
+                <img src="../img/default.jpg" ng-src="{{profileImageData || '/img/default.jpg'}}" class="pull-left img-thumbnail" />
+                <a href="#">{{author}}</a>
+                <time>{{datatiime}}</time>
+            </div>
+            <span>{{content}}</span>
+            <div class="row">
+                <div class="pull-right">
+                    <span>{{likesCount}}</span>
+                    <a href="#" ng-hidee="{{liked}}">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        Like
+                    </a>
+                    <a href="#" ng-show="{{liked}}">
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                        Unlike
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Coment</button>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -12,7 +12,6 @@ socialNetwork.factory('notifyService',
                 );
             },
             showError: function(msg, serverError) {
-                // Collect errors to display from the server response
                 var errors = [];
                 if (serverError && serverError.error_description) {
                     errors.push(serverError.error_description);
