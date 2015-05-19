@@ -57,7 +57,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\css\bootstrap.css" />
+    <Content Include="app\css\bootstrap\bootstrap.css" />
+    <Content Include="app\css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\img\default.jpg" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\controllers\AuthenticationController.js" />
     <Content Include="app\js\controllers\MainController.js" />
@@ -2279,6 +2281,9 @@
     <Content Include="app\lib\angular\i18n\angular-locale_zu-za.js" />
     <Content Include="app\lib\angular\i18n\angular-locale_zu.js" />
     <Content Include="app\lib\angular\version.txt" />
+    <Content Include="app\lib\bootstrap\js\bootstrap.js" />
+    <Content Include="app\lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="app\lib\bootstrap\js\npm.js" />
     <Content Include="app\lib\jquery.noty.js" />
     <Content Include="app\partials\userHome.html" />
     <Content Include="app\partials\login.html" />
@@ -2505,6 +2510,10 @@
     <Content Include="app\lib\angular\docs\js\search-worker.min.js.map" />
     <Content Include="app\lib\angular\errors.json" />
     <Content Include="app\lib\angular\version.json" />
+    <Content Include="app\css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\css\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2513,7 +2522,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\img\" />
     <Folder Include="app\lib\angular\i18n\ngLocale\" />
   </ItemGroup>
   <PropertyGroup>
