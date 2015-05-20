@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\css\app.css" />
     <Content Include="app\css\bootstrap\bootstrap.css" />
     <Content Include="app\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="app\img\default.jpg" />
@@ -66,6 +67,7 @@
     <Content Include="app\js\services\postServices.js" />
     <Content Include="app\js\services\authentication.js" />
     <Content Include="app\js\services\notifyService.js" />
+    <Content Include="app\js\services\profileServices.js" />
     <Content Include="app\lib\angular\angular-animate.js" />
     <Content Include="app\lib\angular\angular-animate.min.js" />
     <Content Include="app\lib\angular\angular-aria.js" />
@@ -2283,7 +2285,9 @@
     <Content Include="app\lib\angular\version.txt" />
     <Content Include="app\lib\bootstrap\js\bootstrap.js" />
     <Content Include="app\lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="app\lib\bootstrap\js\jasny-bootstrap.js" />
     <Content Include="app\lib\bootstrap\js\npm.js" />
+    <Content Include="app\lib\jquery-2.1.1.js" />
     <Content Include="app\lib\jquery.noty.js" />
     <Content Include="app\partials\userHome.html" />
     <Content Include="app\partials\login.html" />

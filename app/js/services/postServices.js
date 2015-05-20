@@ -2,9 +2,7 @@
 
 socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
     var postServices = {};
-
-    postServices.params = {};
-
+    
     var postServicesUrl = baseServiceUrl + "/Posts";
 
     postServices.PublishPost = function (postsData, headers, success, error) {
@@ -36,13 +34,16 @@ socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
             }).error(error);
     };
 
-    postServices.clearParams = function () {
-        postServices.params.status = null;
-        postServices.params.startPage = 1;
+    postServices.likePost = function (postsId, headers) {
+        $http.post(postServicesUrl + '/' + postsId + 'likes', { headers: headers });
     };
 
-    postServices.clearParams();
-    postServices.params.pageSize = 5;
+    postServices.unlikePost = function (postsId, headers, success) {
+        $http.delete(postServicesUrl + '/' + postsId + 'likes', { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    };
 
     return postServices;
 });
