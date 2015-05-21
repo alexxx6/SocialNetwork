@@ -35,14 +35,11 @@ socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
     };
 
     postServices.likePost = function (postsId, headers) {
-        $http.post(postServicesUrl + '/' + postsId + 'likes', { headers: headers });
+        $http.post(postServicesUrl + '/' + postsId + '/likes', null, { headers: headers });
     };
 
-    postServices.unlikePost = function (postsId, headers, success) {
-        $http.delete(postServicesUrl + '/' + postsId + 'likes', { headers: headers })
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
+    postServices.unlikePost = function (postsId, headers) {
+        $http.delete(postServicesUrl + '/' + postsId + '/likes', { headers: headers });
     };
 
     return postServices;

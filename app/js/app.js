@@ -63,5 +63,4 @@ socialNetwork.config(function ($routeProvider) {
             controller: 'MainController'
         })
         .otherwise({ redirectTo: '/' });
-
 });
