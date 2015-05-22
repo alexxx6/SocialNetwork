@@ -19,6 +19,13 @@ socialNetwork.factory('authentication', function ($http, baseServiceUrl) {
             }).error(error);
     }
 
+    service.Logout = function (headers, success) {
+        $http.post(serviceUrl + '/logout', null, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success();
+            });
+    }
+
     service.SetCredentials = function (serverData) {
         localStorage['accessToken'] = serverData.access_token;
         localStorage['username'] = serverData.userName;
@@ -32,7 +39,7 @@ socialNetwork.factory('authentication', function ($http, baseServiceUrl) {
         localStorage.clear();
     };
 
-    service.GetHeaders = function() {
+    service.GetHeaders = function () {
         return {
             Authorization: "Bearer " + localStorage['accessToken']
         };

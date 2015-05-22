@@ -1,0 +1,70 @@
+﻿<div class="container">
+    <div class="well col-lg-4 aside-nav col-sm-12 text-center" ng-include="'partials/aside.html'">
+    </div>
+    <div class="col-lg-8 col-sm-12">
+        <div class="jumbotron">
+            <form class="form-horizontal" ng-controller="AuthenticationController" name="editProfileForm" ng-submit="editProfile()">
+                <fieldset>
+                    <legend>Edit Profile</legend>
+                    <div class="col-lg-4 text-center">
+                        <img class="profileImg" base-sixty-four-image="userData.profileImage" base-sixty-four-image-placeholder="userData.profileImageData" />
+                        <div>Allowed format: .jpg</div>
+                        <div>Limit: 128kb</div>
+                        <button type="button" id="uploadProfileImgBtn" class="btn btn-primary">Upload</button>
+                        <input type="file" ng-model="userData.profileImage" id="profileImgFile" name="file" base-sixty-four-input style="display: none">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <label for="inputName" class="col-lg-2 control-label">Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="inputName" ng-model="userData.name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-10">
+                                <input type="email" class="form-control" id="inputEmail" ng-model="userData.email" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Gender</label>
+                            <div class="col-lg-10">
+                                <div class="radio-inline">
+                                    <label>
+                                        <input type="radio" ng-model="userData.gender" value="Male" />
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="radio-inline">
+                                    <label for="female">
+                                        <input type="radio" id="female" ng-model="userData.gender" value="Female" />
+                                        Female
+                                    </label>
+                                </div>
+                                <div class="radio-inline">
+                                    <label for="other">
+                                        <input type="radio" id="other" ng-model="userData.gender" value="Other" />
+                                        Other
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-2 text-center">
+                            <button type="button" id="uploaCoverImgdBtn" class="btn btn-primary">Upload</button>
+                            <input type="file" ng-model="userData.profileImage" id="coverImgFile" name="file1" base-sixty-four-input style="display: none">
+                            <div>Limit: 1024kb</div>
+                        </div>
+                        <div class="col-lg-8 col-sm-10">
+                            <img class="coverImage" base-sixty-four-image="userData.coverImage" base-sixty-four-image-placeholder="userData.coverImageData" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,9 @@
 'use strict';
 
-var socialNetwork = angular.module('SocialNetwork', ['ngRoute']);
+var socialNetwork = angular.module('SocialNetwork', ['ngRoute', 'naif.base64']);
 
-socialNetwork.constant('baseServiceUrl', 'http://softuni-social-network.azurewebsites.net/api');
+//socialNetwork.constant('baseServiceUrl', 'http://softuni-social-network.azurewebsites.net/api');
+socialNetwork.constant('baseServiceUrl', 'http://localhost:49399/api');
 
 socialNetwork.config(function ($routeProvider) {
     $routeProvider
@@ -18,8 +19,8 @@ socialNetwork.config(function ($routeProvider) {
             templateUrl: 'partials/userHome.html',
             controller: 'MainController'
         })
-        .when('/user/ads', {
-            templateUrl: 'templates/user-ads.html',
+        .when('/user/edit/profile', {
+            templateUrl: 'partials/editProfile.html',
             controller: 'MainController'
         })
         .when('/user/profile', {
@@ -62,5 +63,5 @@ socialNetwork.config(function ($routeProvider) {
             templateUrl: 'templates/delete-ad.html',
             controller: 'MainController'
         })
-        .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/user/home' });
 });

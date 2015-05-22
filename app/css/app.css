@@ -1,0 +1,27 @@
+﻿.frindsPreview > a {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    background-size: contain;
+    line-height: 130px;
+    margin-right: 5px;
+}
+
+.label-as-badge {
+    border-radius: 50px;
+}
+
+.friendRequestsList:hover, .searchUserList:hover {
+    background: #87cefa;
+}
+
+.coverImage {
+    width: 100%;
+    height: 70px;
+    margin-bottom: 40px;
+}
+
+.profileImg {
+    width: 100px;
+    height: 95px;
+}

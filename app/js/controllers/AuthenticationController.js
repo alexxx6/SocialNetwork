@@ -1,7 +1,7 @@
 'use strict';
 
 socialNetwork.controller('AuthenticationController', function ($scope, $location, $route,
-                        authentication, notifyService) {
+                        authentication, notifyService, profileServices) {
 
     var ClearData = function () {
         $scope.loginData = "";
@@ -36,15 +36,18 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
             });
     };
 
-    $scope.editUser = function () {
-        authentication.EditUserProfile($scope.userData,
+    $scope.editProfile = function () {
+        var editedData = $scope.userData;
+        editedData.profileImageData = editedData.profileImage.base64;
+        delete editedData.profileImage;
+        delete editedData.username;
+        profileServices.EditUserProfile(editedData, authentication.GetHeaders(),
             function (serverData) {
                 notifyService.showInfo("Successful Profile Edit!");
-                ClearData();
                 $location.path('/user/home');
             },
             function (serverError) {
-                notifyService.showError("Unsuccessful Profile Edit!", serverError)
+                notifyService.showError("Unsuccessful Profile Edit!", serverError);
             });
     };
 
@@ -56,14 +59,17 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
                 $location.path('/user/home');
             },
             function (serverError) {
-                notifyService.showError("Unsuccessful Password Change!", serverError)
+                notifyService.showError("Unsuccessful Password Change!", serverError);
             });
     };
 
     $scope.logout = function () {
-        notifyService.showInfo("Successful Logout!");
-        ClearData();
-        authentication.ClearCredentials();
-        $route.reload();
+        authentication.Logout(authentication.GetHeaders(),
+            function () {
+                notifyService.showInfo("Successful Logout!");
+                ClearData();
+                authentication.ClearCredentials();
+                $route.reload();
+            });
     };
 });

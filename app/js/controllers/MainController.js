@@ -8,6 +8,7 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
         var headers = authentication.GetHeaders();
         profileServices.GetUserProfile(headers, function (userData) {
             $scope.userData = userData;
+            $scope.userData.gender = $scope.userData.gender == 0 ? 'Male' : $scope.userData.gender == 1 ? 'Female' : 'Other';
         });
         profileServices.GetUserFeed(headers, function (feedData) {
             $scope.feedData = feedData;
@@ -52,6 +53,25 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
                 getFriendRequests();
             });
         };
+        $scope.LoadHomePage = function() {
+            $location.path('/user/home');
+        };
+        $scope.LoadEditProfilePage = function() {
+            $location.path('/user/edit/profile');
+        };
+        $scope.uploadFile = function() {
+            $http.post('server.php', $scope.image)
+                .success(function(res) {
+                    alert('View file ' + res + '  ?');
+                    $window.location.assign(res);
+                });
+        };
+        $("#uploadProfileImgBtn").click(function () {
+            $("#profileImgFile").trigger('click');
+        });
+        $("#uploaCoverImgdBtn").click(function () {
+            $("#coverImgFile").trigger('click');
+        });
     }
     var path = $location.path();
     if ((path.indexOf("user") !== -1) && !authentication.isLoggedIn()) {
