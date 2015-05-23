@@ -3,6 +3,8 @@
 socialNetwork.controller('AuthenticationController', function ($scope, $location, $route,
                         authentication, notifyService, profileServices) {
 
+    var headers = authentication.GetHeaders();
+
     var ClearData = function () {
         $scope.loginData = "";
         $scope.registerData = "";
@@ -38,10 +40,9 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
 
     $scope.editProfile = function () {
         var editedData = $scope.userData;
-        editedData.profileImageData = editedData.profileImage.base64;
-        delete editedData.profileImage;
         delete editedData.username;
-        profileServices.EditUserProfile(editedData, authentication.GetHeaders(),
+        delete editedData.id;
+        profileServices.EditUserProfile(editedData, headers,
             function (serverData) {
                 notifyService.showInfo("Successful Profile Edit!");
                 $location.path('/user/home');
@@ -52,7 +53,7 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
     };
 
     $scope.changePassword = function () {
-        authentication.ChangePassword($scope.passwordData,
+        profileServices.ChangePassword($scope.passwordData, headers,
             function () {
                 notifyService.showInfo("Successful Password Change!");
                 ClearData();
@@ -64,7 +65,7 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
     };
 
     $scope.logout = function () {
-        authentication.Logout(authentication.GetHeaders(),
+        authentication.Logout(headers,
             function () {
                 notifyService.showInfo("Successful Logout!");
                 ClearData();

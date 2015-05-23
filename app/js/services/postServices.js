@@ -5,11 +5,11 @@ socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
     
     var postServicesUrl = baseServiceUrl + "/Posts";
 
-    postServices.PublishPost = function (postsData, headers, success, error) {
-        $http.post(postServicesUrl, postsData, {headers: headers})
-            .success(function (data, status, headers, config) {
+    postServices.PublishPost = function (postsData, headers, success) {
+        $http.post(postServicesUrl, postsData, { headers: headers })
+            .success(function(data, status, headers, config) {
                 success(data);
-            }).error(error);
+            });
     };
 
     postServices.GetPostById = function (postsId, headers, success) {

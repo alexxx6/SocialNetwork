@@ -26,6 +26,13 @@ socialNetwork.factory('profileServices', function ($http, baseServiceUrl) {
             });
     }
 
+    profileServices.GetAllFriends = function (headers, success) {
+        $http.get(profileServicesUrl + '/friends', { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data);
+            });
+    }
+
     profileServices.GetFriendRequests = function (headers, success) {
         $http.get(profileServicesUrl + '/requests', { headers: headers })
             .success(function (data, status, headers, config) {
@@ -45,11 +52,17 @@ socialNetwork.factory('profileServices', function ($http, baseServiceUrl) {
                 success();
             });
     };
-    profileServices.EditUserProfile = function(editedData, headers, success, erorr) {
+    profileServices.EditUserProfile = function (editedData, headers, success, erorr) {
         $http.put(profileServicesUrl, editedData, { headers: headers })
-            .success(function(data, status, headers, config) {
-                    success();
-                }).error(erorr);
+            .success(function (data, status, headers, config) {
+                success();
+            }).error(erorr);
+    };
+    profileServices.ChangePassword = function (passwordData, headers, success, erorr) {
+        $http.put(profileServicesUrl + '/changepassword', passwordData, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success();
+            }).error(erorr);
     };
 
     return profileServices;

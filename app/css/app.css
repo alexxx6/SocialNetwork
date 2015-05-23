@@ -4,7 +4,6 @@
     height: 75px;
     background-size: contain;
     line-height: 130px;
-    margin-right: 5px;
 }
 
 .label-as-badge {
@@ -13,6 +12,10 @@
 
 .friendRequestsList:hover, .searchUserList:hover {
     background: #87cefa;
+}
+
+.friendRequestsBtns {
+    margin-left: 120px;
 }
 
 .coverImage {
@@ -24,4 +27,13 @@
 .profileImg {
     width: 100px;
     height: 95px;
+}
+
+textarea {
+    width: 100%;
+}
+
+.friendsList {
+    list-style-type: none;
+    display: inline;
 }

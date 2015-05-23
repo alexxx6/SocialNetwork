@@ -7,11 +7,11 @@
                 <fieldset>
                     <legend>Edit Profile</legend>
                     <div class="col-lg-4 text-center">
-                        <img class="profileImg" base-sixty-four-image="userData.profileImage" base-sixty-four-image-placeholder="userData.profileImageData" />
+                        <img class="profileImg" ng-src="{{userData.profileImageData}}" />
                         <div>Allowed format: .jpg</div>
                         <div>Limit: 128kb</div>
                         <button type="button" id="uploadProfileImgBtn" class="btn btn-primary">Upload</button>
-                        <input type="file" ng-model="userData.profileImage" id="profileImgFile" name="file" base-sixty-four-input style="display: none">
+                        <input type="file" id="profileImgFile" name="file" style="display: none">
                     </div>
                     <div class="col-lg-8">
                         <div class="form-group">
@@ -31,19 +31,19 @@
                             <div class="col-lg-10">
                                 <div class="radio-inline">
                                     <label>
-                                        <input type="radio" ng-model="userData.gender" value="Male" />
+                                        <input type="radio" ng-model="userData.gender" value="0" />
                                         Male
                                     </label>
                                 </div>
                                 <div class="radio-inline">
                                     <label for="female">
-                                        <input type="radio" id="female" ng-model="userData.gender" value="Female" />
+                                        <input type="radio" id="female" ng-model="userData.gender" value="1" />
                                         Female
                                     </label>
                                 </div>
                                 <div class="radio-inline">
                                     <label for="other">
-                                        <input type="radio" id="other" ng-model="userData.gender" value="Other" />
+                                        <input type="radio" id="other" ng-model="userData.gender" value="2" />
                                         Other
                                     </label>
                                 </div>
@@ -51,11 +51,11 @@
                         </div>
                         <div class="col-lg-4 col-sm-2 text-center">
                             <button type="button" id="uploaCoverImgdBtn" class="btn btn-primary">Upload</button>
-                            <input type="file" ng-model="userData.profileImage" id="coverImgFile" name="file1" base-sixty-four-input style="display: none">
+                            <input type="file" id="coverImgFile" name="file1" style="display: none">
                             <div>Limit: 1024kb</div>
                         </div>
                         <div class="col-lg-8 col-sm-10">
-                            <img class="coverImage" base-sixty-four-image="userData.coverImage" base-sixty-four-image-placeholder="userData.coverImageData" />
+                            <img class="coverImage" ng-src="{{userData.coverImageData}}" />
                         </div>
                     </div>
                     <div class="form-group">

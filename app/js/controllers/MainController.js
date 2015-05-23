@@ -1,33 +1,32 @@
 'use strict';
 
 socialNetwork.controller('MainController', function ($scope, $location, authentication,
-                    profileServices, postServices, userServices) {
+                    profileServices, postServices, userServices, notifyService) {
 
     $scope.username = authentication.GetUsername();
+
     if ($scope.username) {
         var headers = authentication.GetHeaders();
+
         profileServices.GetUserProfile(headers, function (userData) {
             $scope.userData = userData;
-            $scope.userData.gender = $scope.userData.gender == 0 ? 'Male' : $scope.userData.gender == 1 ? 'Female' : 'Other';
         });
         profileServices.GetUserFeed(headers, function (feedData) {
             $scope.feedData = feedData;
         });
 
         function getUserFriendsPreview() {
-            profileServices.GetUserFriendsPreview(headers, function (frindsPreview) {
-                $scope.frindsPreview = frindsPreview;
+            profileServices.GetUserFriendsPreview(headers, function (friendsPreview) {
+                $scope.friendsPreview = friendsPreview;
             });
         }
 
         getUserFriendsPreview();
+        
 
-        $scope.likePost = function (postId) {
-            postServices.likePost(postId, headers);
-        };
-        $scope.unlikePost = function (postId) {
-            postServices.unlikePost(postId, headers);
-        };
+        profileServices.GetAllFriends(headers, function (friends) {
+            $scope.friends = friends;
+        });
         $scope.searchUserByName = function (name) {
             userServices.searchUserByName(name, headers, function (findPeople) {
                 $scope.findPeople = findPeople;
@@ -35,43 +34,70 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
         };
 
         function getFriendRequests() {
-            profileServices.GetFriendRequests(headers, function(friendRequests) {
+            profileServices.GetFriendRequests(headers, function (friendRequests) {
                 $scope.friendRequests = friendRequests;
             });
         }
 
         getFriendRequests();
 
-        $scope.ApproveFriendRequest = function(requestId) {
-            profileServices.ApproveFriendRequest(requestId, headers, function() {
+        $scope.ApproveFriendRequest = function (requestId) {
+            profileServices.ApproveFriendRequest(requestId, headers, function () {
                 getUserFriendsPreview();
                 getFriendRequests();
             });
         };
         $scope.RejectFriendRequest = function (requestId) {
-            profileServices.RejectFriendRequest(requestId, headers,function() {
+            profileServices.RejectFriendRequest(requestId, headers, function () {
                 getFriendRequests();
             });
         };
-        $scope.LoadHomePage = function() {
+        $scope.LoadHomePage = function () {
             $location.path('/user/home');
         };
-        $scope.LoadEditProfilePage = function() {
+        $scope.LoadEditProfilePage = function () {
             $location.path('/user/edit/profile');
-        };
-        $scope.uploadFile = function() {
-            $http.post('server.php', $scope.image)
-                .success(function(res) {
-                    alert('View file ' + res + '  ?');
-                    $window.location.assign(res);
-                });
         };
         $("#uploadProfileImgBtn").click(function () {
             $("#profileImgFile").trigger('click');
         });
-        $("#uploaCoverImgdBtn").click(function () {
-            $("#coverImgFile").trigger('click');
-        });
+        (function uploadImages() {
+            var MAX_SISE_OF_PROFILE_IMG = 131072;
+            var MAX_SISE_OF_COVER_IMG = 1048576;
+            var reader = new FileReader();
+
+            $('#profileImgFile').change(function () {
+                var profileImg = this.files[0];
+                if (profileImg.type.match(/image\/jpeg/) && profileImg.size <= MAX_SISE_OF_PROFILE_IMG) {
+                    reader.onload = function () {
+                        $('.profileImg').attr('src', reader.result);
+                        $scope.userData.profileImageData = reader.result;
+                    };
+                    reader.readAsDataURL(profileImg);
+                } else {
+                    notifyService.showError("Invalid file format or size.");
+                }
+            });
+
+            $("#uploaCoverImgdBtn").click(function () {
+                $("#coverImgFile").trigger('click');
+            });
+            $('#coverImgFile').change(function () {
+                var coverImage = this.files[0];
+                if (coverImage.type.match(/image\/.*/) && coverImage.size <= MAX_SISE_OF_COVER_IMG) {
+                    reader.onload = function () {
+                        $('.coverImage').attr('src', reader.result);
+                        $scope.userData.coverImageData = reader.result;
+                    };
+                reader.readAsDataURL(coverImage);
+                } else {
+                    notifyService.showError("Invalid file format or size.");
+                }
+            });
+        })();
+        $scope.loadChangePasswordPage = function () {
+            $location.path('/user/edit/password');
+        };
     }
     var path = $location.path();
     if ((path.indexOf("user") !== -1) && !authentication.isLoggedIn()) {

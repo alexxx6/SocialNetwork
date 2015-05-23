@@ -10,17 +10,21 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li class="friendRequestsList" ng-repeat="request in friendRequests">
-                <img ng-src="{{request.user.profileImageData || '../img/default.jpg'}}" width="50px" height="50px" />{{request.user.username}}
-                <div class="btn-group-vertical" role="group" aria-label="...">
-                    <button type="button" ng-click="ApproveFriendRequest(request.id)" class="btn btn-primary">Approve</button>
-                    <button type="button" ng-click="RejectFriendRequest(request.id)" class="btn btn-danger">Rejecte</button>
+                <div class="col-lg-8">
+                    <img ng-src="{{request.user.profileImageData || '../img/default.jpg'}}" width="50px" height="50px" />{{request.user.username}}
+                </div>
+                <div class="col-lg-4">
+                    <div class="btn-group-vertical pull-right friendRequestsBtns" role="group" aria-label="...">
+                        <button type="button" ng-click="ApproveFriendRequest(request.id)" class="btn btn-primary">Approve</button>
+                        <button type="button" ng-click="RejectFriendRequest(request.id)" class="btn btn-danger">Rejecte</button>
+                    </div>
                 </div>
             </li>
         </ul>
         <button type="button" ng-click="LoadEditProfilePage()" class="btn btn-default">
             <span class="glyphicon glyphicon-cog"></span>
         </button>
-        <button type="button" class="btn btn-default">
+        <button type="button" ng-click="loadChangePasswordPage()" class="btn btn-default">
             <span class="glyphicon glyphicon-wrench"></span>
         </button>
         <button ng-controller="AuthenticationController" type="button" ng-click="logout()" class="btn btn-default">
@@ -32,13 +36,15 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">
-                Frieds - total: <a href="#/friends">{{frindsPreview.totalCount}}</a>
+                Frieds - total: <a href="#/user/friends">{{friendsPreview.totalCount}}</a>
             </h3>
         </div>
-        <div class="panel-body frindsPreview">
-            <a href="#" ng-repeat="friend in frindsPreview.friends" ng-style="{'background-image': 'url({{friend.profileImage || '../img/default.jpg'}})' }">
-                <span>{{friend.username}}</span>
-            </a>
+        <div class="panel-body">
+            <div class="frindsPreview">
+                <a href="#" ng-repeat="friend in friendsPreview.friends" ng-style="{'background-image': 'url({{friend.profileImage || '../img/default.jpg'}})' }">
+                    <span>{{friend.username}}</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
