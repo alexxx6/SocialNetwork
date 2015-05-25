@@ -11,8 +11,8 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
         profileServices.GetUserProfile(headers, function (userData) {
             $scope.userData = userData;
         });
-        profileServices.GetUserFeed(headers, function (feedData) {
-            $scope.feedData = feedData;
+        profileServices.GetUserFeed(headers, function (postsData) {
+            $scope.postsData = postsData;
         });
 
         function getUserFriendsPreview() {
@@ -27,11 +27,6 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
         profileServices.GetAllFriends(headers, function (friends) {
             $scope.friends = friends;
         });
-        $scope.searchUserByName = function (name) {
-            userServices.searchUserByName(name, headers, function (findPeople) {
-                $scope.findPeople = findPeople;
-            });
-        };
 
         function getFriendRequests() {
             profileServices.GetFriendRequests(headers, function (friendRequests) {
@@ -97,6 +92,10 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
         })();
         $scope.loadChangePasswordPage = function () {
             $location.path('/user/edit/password');
+        };
+
+        $scope.loadFriendsPage = function () {
+            $location.path('/user/friends');
         };
     }
     var path = $location.path();

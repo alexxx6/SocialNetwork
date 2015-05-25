@@ -59,12 +59,15 @@
   <ItemGroup>
     <Content Include="app\css\app.css" />
     <Content Include="app\css\bootstrap\bootstrap.css" />
+    <Content Include="app\css\bootstrap\bootstrap.icon-large.css" />
     <Content Include="app\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="app\img\default.jpg" />
+    <Content Include="app\img\glyphicons.png" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\controllers\AuthenticationController.js" />
     <Content Include="app\js\controllers\MainController.js" />
     <Content Include="app\js\controllers\PostController.js" />
+    <Content Include="app\js\controllers\UserController.js" />
     <Content Include="app\js\services\postServices.js" />
     <Content Include="app\js\services\authentication.js" />
     <Content Include="app\js\services\notifyService.js" />
@@ -2295,7 +2298,9 @@
     <Content Include="app\partials\changePassword.html" />
     <Content Include="app\partials\editProfile.html" />
     <Content Include="app\partials\friendsPage.html" />
-    <Content Include="app\partials\userHome.html" />
+    <Content Include="app\partials\userWall.html" />
+    <Content Include="app\partials\posts.html" />
+    <Content Include="app\partials\home.html" />
     <Content Include="app\partials\login.html" />
     <Content Include="app\partials\register.html" />
     <Content Include="app\index.html" />

@@ -1,0 +1,45 @@
+﻿<div class="jumbotron" ng-repeat="post in postsData">
+    <div class="row">
+        <div class="col-xs-9 col-sm-10 col-md-11 col-lg-11">
+            <img ng-src="{{post.author.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="110px" />
+            <a href="#/user/{{post.author.username}}">{{post.author.username}}</a>
+            <time>{{post.date}}</time>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <div class="btn-group" ng-show="post.author.username === username">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Edit</a></li>
+                    <li><a href="#">Delete</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <span>{{post.postContent}}</span>
+    <div class="row">
+        <div class="pull-right" ng-init="isLiked=post.liked">
+            <span>{{post.likesCount}}</span>
+            <span ng-show="(post.author.isFriend && post.wallOwner.isFriend)">
+                <a href="" ng-hide="isLiked" ng-click="likePost(post.id); post.likesCount=post.likesCount+1; isLiked=!isLiked">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    Like
+                </a>
+                <a href="" ng-show="isLiked" ng-click="unlikePost(post.id); post.likesCount=post.likesCount-1; isLiked=!isLiked">
+                    <span class=" glyphicon glyphicon-thumbs-down">
+                    </span>
+                    Unlike
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-12" ng-show="(post.author.isFriend && post.wallOwner.isFriend)">
+        <div class="input-group">
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Coment</button>
+            </span>
+        </div>
+    </div>
+</div>

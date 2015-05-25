@@ -6,6 +6,7 @@ socialNetwork.constant('baseServiceUrl', 'http://softuni-social-network.azureweb
 //socialNetwork.constant('baseServiceUrl', 'http://localhost:49399/api');
 
 socialNetwork.config(function ($routeProvider) {
+
     $routeProvider
         .when('/', {
             templateUrl: 'partials/login.html',
@@ -16,7 +17,7 @@ socialNetwork.config(function ($routeProvider) {
             controller: 'MainController'
         })
         .when('/user/home', {
-            templateUrl: 'partials/userHome.html',
+            templateUrl: 'partials/home.html',
             controller: 'MainController'
         })
         .when('/user/edit/profile', {
@@ -31,8 +32,8 @@ socialNetwork.config(function ($routeProvider) {
             templateUrl: 'partials/friendsPage.html',
             controller: 'MainController'
         })
-        .when('/user/ads/edit/:id', {
-            templateUrl: 'templates/edit-ad.html',
+        .when('/user/:userName', {
+            templateUrl: 'partials/userWall.html',
             controller: 'MainController'
         })
         .when('/user/ads/delete/:id', {

@@ -1,0 +1,21 @@
+﻿<div class="container">
+    <div class="well col-lg-4 aside-nav col-sm-12 text-center" ng-include="'partials/aside.html'">
+    </div>
+    <div class="col-lg-8 col-sm-12" ng-controller="UserController">
+        <div ng-style="{'background-image': 'url({{person.coverImageData}})' }">
+            <div class="text-center col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img ng-src="{{person.profileImageData || '../img/default.jpg'}}" class="img-thumbnail" width="130" height="130">
+                <div>{{person.username}}</div>
+            </div>
+            <div class="col-lg-12">
+                <div class="btn-group-vertical pull-right">
+                    <button ng-hide="person.isFriend">Sent friend request</button>
+                    <button ng-show="person.hasPendingRequest && !person.isFriend">Friend request is sent</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10" ng-include="'partials/posts.html'">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
+    </div>
+</div>
