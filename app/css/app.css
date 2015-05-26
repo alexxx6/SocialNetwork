@@ -34,8 +34,14 @@ textarea {
 }
 
 .friendsList {
-	list-style-type: none;
-	display: inline-block;
-	width: 220px;
-	margin-top: 15px;
+    list-style-type: none;
+    display: inline-block;
+    width: 220px;
+    margin-top: 15px;
+}
+
+.coverImgView {
+    height: 200px;
+    margin-bottom: 10px;
+    border: 1px solid #000000;
 }

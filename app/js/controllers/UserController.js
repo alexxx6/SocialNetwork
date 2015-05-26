@@ -18,10 +18,19 @@ socialNetwork.controller('UserController', function($scope, $location, authentic
         if (userName) {
             userServices.getPersonData(userName, headers, function (person) {
                 $scope.person = person;
+                getFriendFriendsPreview();
             });
-            userServices.getUserPosts(userName, headers, function(wallData) {
-                $scope.postsData = wallData;
+            userServices.getUserPosts(userName, headers, function (postsData) {
+                $scope.postsData = postsData;
             });
+
+            function getFriendFriendsPreview() {
+                if ($scope.person.isFriend) {
+                    userServices.getFriendFriendsPreview(userName, headers, function(friendFriendsPreview) {
+                        $scope.friendFriendsPreview = friendFriendsPreview;
+                    });
+                }
+            }
         }
     }
 

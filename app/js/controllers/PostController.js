@@ -11,12 +11,12 @@ socialNetwork.controller('PostController', function ($scope, $location, authenti
     $scope.unlikePost = function (postId) {
         postServices.unlikePost(postId, headers);
     };
-    $scope.publishPost = function () {
-        $scope.postData.username = authentication.GetUsername();
-        postServices.PublishPost($scope.postData, headers, function() {
-            profileServices.GetUserFeed(headers, function (feedData) {
-                $scope.feedData = feedData;
-            });
+    $scope.publishPost = function (userName) {
+        var post = $scope.newPost;
+        post.username = userName;
+        postServices.PublishPost(post, headers, function (post) {
+            $scope.postsData.splice(0, 0, post);
+            $scope.newPost = null;
         });
     };
 });
