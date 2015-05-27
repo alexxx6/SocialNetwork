@@ -3,19 +3,19 @@
     </div>
     <div class="col-lg-9 col-sm-12" ng-controller="UserController">
         <div class="col-lg-12">
-            <div class="coverImgView" ng-style="{'background-image': 'url({{person.coverImageData}})' }">
+            <div class="coverImgView" ng-style="{'background-image': 'url('+person.coverImageData+')' }" >
                 <div class="text-center col-xs-12 col-sm-4 col-md-2 col-lg-2">
-                    <img ng-src="{{person.profileImageData || '../img/default.jpg'}}" class="img-thumbnail" width="130" height="130">
+                    <img ng-src="{{person.profileImageData || '../img/default.jpg'}}" class="img-thumbnail" width="130px" height="130px">
                     <div>{{person.username}}</div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="btn-group-vertical pull-right">
-                    <button ng-hide="person.isFriend">Sent friend request</button>
-                    <button ng-show="person.hasPendingRequest && !person.isFriend">Friend request is sent</button>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="btn-group-vertical pull-right">
+                        <button ng-hide="person.isFriend || person.hasPendingRequest || person.username == username" ng-click="sendFriendRequest()">Sent friend request</button>
+                        <button ng-show="person.hasPendingRequest && !person.isFriend">Friend request is sent</button>
+                    </div>
                 </div>
             </div>
-        </div>
+         </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-push-8 col-lg-push-8">
             <div class="col-lg-12" ng-show="person.isFriend">
                 <div class=" panel panel-info text-center">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="frindsPreview">
-                            <a href="#" ng-repeat="friend in friendFriendsPreview.friends" ng-style="{'background-image': 'url({{friend.profileImageData || '../img/default.jpg'}})' }">
+                            <a href="#/user/{{friend.username}}" ng-repeat="friend in friendFriendsPreview.friends" ng-style="{'background-image': 'url({{friend.profileImageData || '../img/default.jpg'}})' }">
                                 <span>{{friend.username}}</span>
                             </a>
                         </div>

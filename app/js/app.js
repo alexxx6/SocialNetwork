@@ -1,9 +1,14 @@
 'use strict';
 
-var socialNetwork = angular.module('SocialNetwork', ['ngRoute']);
+var socialNetwork = angular.module('SocialNetwork', ['ngRoute', 'xeditable']);
 
 socialNetwork.constant('baseServiceUrl', 'http://softuni-social-network.azurewebsites.net/api');
 //socialNetwork.constant('baseServiceUrl', 'http://localhost:49399/api');
+
+socialNetwork.run(function (editableOptions) {
+    editableOptions.theme = 'bs3';
+});
+
 
 socialNetwork.config(function ($routeProvider) {
 
@@ -35,6 +40,10 @@ socialNetwork.config(function ($routeProvider) {
         .when('/user/:userName', {
             templateUrl: 'partials/userWall.html',
             controller: 'MainController'
+        })
+        .when('/user/:userName/friends', {
+            templateUrl: 'partials/friendsPage.html',
+            controller: 'UserController'
         })
         .when('/user/ads/delete/:id', {
             templateUrl: 'templates/delete-ad.html',

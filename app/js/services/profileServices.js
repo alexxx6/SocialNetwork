@@ -64,6 +64,12 @@ socialNetwork.factory('profileServices', function ($http, baseServiceUrl) {
                 success();
             }).error(erorr);
     };
+    profileServices.SendFriendRequest = function (userName, headers, success, erorr) {
+        $http.post(profileServicesUrl + '/requests' + '/' + userName, null, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success();
+            }).error(erorr);
+    };
 
     return profileServices;
 });

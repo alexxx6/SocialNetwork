@@ -73,6 +73,9 @@
     <Content Include="app\js\services\notifyService.js" />
     <Content Include="app\js\services\profileServices.js" />
     <Content Include="app\js\services\userService.js" />
+    <Content Include="app\css\angular-xeditable\xeditable.css" />
+    <Content Include="app\lib\angular-xeditable-0.1.8\js\xeditable.js" />
+    <Content Include="app\lib\angular-xeditable-0.1.8\js\xeditable.min.js" />
     <Content Include="app\lib\angular\angular-animate.js" />
     <Content Include="app\lib\angular\angular-animate.min.js" />
     <Content Include="app\lib\angular\angular-aria.js" />

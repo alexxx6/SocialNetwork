@@ -11,9 +11,11 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li class="friendRequestsList" ng-repeat="request in friendRequests">
-                <div class="col-lg-8">
-                    <img ng-src="{{request.user.profileImageData || '../img/default.jpg'}}" width="50px" height="50px" />{{request.user.username}}
-                </div>
+                <a href="#/user/{{request.username}}">
+                    <div class="col-lg-8">
+                        <img ng-src="{{request.user.profileImageData || '../img/default.jpg'}}" width="50px" height="50px" />{{request.user.username}}
+                    </div>
+                </a>
                 <div class="col-lg-4">
                     <div class="btn-group-vertical pull-right friendRequestsBtns" role="group" aria-label="...">
                         <button type="button" ng-click="ApproveFriendRequest(request.id)" class="btn btn-primary">Approve</button>
@@ -46,7 +48,7 @@
         </div>
         <div class="panel-body">
             <div class="frindsPreview">
-                <a href="#" ng-repeat="friend in friendsPreview.friends" ng-style="{'background-image': 'url({{friend.profileImage || '../img/default.jpg'}})' }">
+                <a href="#/user/{{friend.username}}" ng-repeat="friend in friendsPreview.friends" ng-style="{'background-image': 'url({{friend.profileImage || '../img/default.jpg'}})' }">
                     <span>{{friend.username}}</span>
                 </a>
             </div>
@@ -59,8 +61,8 @@
             <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon2"></span>
             <ul class="dropdown-menu" role="menu">
                 <li class="searchUserList" ng-repeat="person in findPeople">
-                    <a>
-                        <img ng-src="{{person.profileImageData || '../img/default.jpg'}}" width="50px" height="50px"/>{{person.username}}
+                    <a href="#/user/{{person.username}}">
+                        <img ng-src="{{person.profileImageData || '../img/default.jpg'}}" width="50px" height="50px" />{{person.username}}
                     </a>
                 </li>
             </ul>

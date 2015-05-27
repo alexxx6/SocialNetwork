@@ -12,25 +12,17 @@ socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
             });
     };
 
-    postServices.GetPostById = function (postsId, headers, success) {
-        $http.get(postServicesUrl + '/' + postsId,
-            {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            });
-    };
-
-    postServices.EditPost = function (currentAd, headers, success, error) {
-        $http.put(postServicesUrl + '/' + currentAd.id, currentAd, {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
+    postServices.EditPost = function (postId, postContent, headers, error) {
+        var post = {};
+        post.postContent = postContent;
+        $http.put(postServicesUrl + '/' + postId, post, { headers: headers })
+            .error(error);
     };
 
     postServices.DeletePost = function (postsId, headers, success, error) {
         $http.delete(postServicesUrl + '/' + postsId, { headers: headers })
             .success(function (data, status, headers, config) {
-                success(data);
+                success();
             }).error(error);
     };
 
