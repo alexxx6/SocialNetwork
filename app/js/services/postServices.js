@@ -34,5 +34,12 @@ socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
         $http.delete(postServicesUrl + '/' + postsId + '/likes', { headers: headers });
     };
 
+    postServices.getPostLikes = function (postsId, headers, success) {
+        $http.get(postServicesUrl + '/' + postsId + '/likes', { headers: headers })
+            .success(function(data, status, headers, config) {
+                success(data);
+            });
+    };
+
     return postServices;
 });

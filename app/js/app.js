@@ -1,6 +1,6 @@
 'use strict';
 
-var socialNetwork = angular.module('SocialNetwork', ['ngRoute', 'xeditable']);
+var socialNetwork = angular.module('SocialNetwork', ['ngRoute', 'xeditable', 'ngDialog']);
 
 socialNetwork.constant('baseServiceUrl', 'http://softuni-social-network.azurewebsites.net/api');
 //socialNetwork.constant('baseServiceUrl', 'http://localhost:49399/api');
@@ -10,7 +10,7 @@ socialNetwork.run(function (editableOptions) {
 });
 
 
-socialNetwork.config(function ($routeProvider) {
+socialNetwork.config(function ($routeProvider, ngDialogProvider) {
 
     $routeProvider
         .when('/', {
@@ -74,4 +74,12 @@ socialNetwork.config(function ($routeProvider) {
             controller: 'MainController'
         })
         .otherwise({ redirectTo: '/user/home' });
+
+    ngDialogProvider.setDefaults({
+        plain: false,
+        showClose: true,
+        closeByDocument: true,
+        closeByEscape: true,
+        appendTo: false
+    });
 });

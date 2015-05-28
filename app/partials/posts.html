@@ -2,7 +2,7 @@
     <div class=" row">
     <div class="col-xs-8 col-sm-10 col-md-11 col-lg-11">
         <img ng-src="{{post.author.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="110px" />
-        <a href="#/user/{{post.author.username}}">{{post.author.username}}</a>
+        <a popup-show popup-html="" popup-placement="right" popup-label="{{post.author.username}}"></a>
         <time>{{post.date | date:'medium'}}</time>
     </div>
     <div class="pull-right col-sm-1">
@@ -34,7 +34,7 @@
     </form>
     <div class="row">
         <div class="pull-right col-sm-1" ng-init="isLiked=post.liked">
-            <span>{{post.likesCount}}</span>
+            <a href="" ng-click="getPostLikes(post.id)">{{post.likesCount}}</a>
             <span ng-show="((post.author.isFriend && post.wallOwner.isFriend) || (post.author.isFriend && post.wallOwner.username==username) || post.author.username==username)">
                 <a href="" ng-hide="isLiked" ng-click="likePost(post.id); post.likesCount=post.likesCount+1; isLiked=!isLiked">
                     <span class="glyphicon glyphicon-thumbs-up"></span>

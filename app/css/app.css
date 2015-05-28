@@ -43,7 +43,17 @@ textarea {
 .coverImgView {
     height: 200px;
     margin-bottom: 10px;
-    border: 1px solid #000000;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    background-color: #DFDFC6;
+}
+
+.coverImgView>div:first-child {    
+    color: #fff;
+    font-weight: 900;
+}
+
+.postLikeList {
+    list-style-type: none;
+    margin-bottom: 10px;
 }
