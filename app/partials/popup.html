@@ -1,6 +1,16 @@
-﻿<h3 class="popover-title">Hello!</h3>
-<div class="popover-content">
-    <p>This is a popup</p>
-
-    <a ng-click="hidePopover()" class="btn btn-primary">Go away!</a>
+﻿<div class="triangle"></div>
+<div class="ns-popover-tooltip" ng-controller="UserController">
+    <div class="popupContainer" ng-init="getUserPreview(authorName)">
+        <img ng-src="{{userPreview.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="150px" />
+        <span>
+            <div class="popupInfo">
+                <div>Username: <a href="#/user/{{userPreview.username}}">{{userPreview.username}}</a></div>
+                <div>Name: {{userPreview.name}}</div>
+                <div ng-show="userPreview.gender==0">Gender: Male</div>
+                <div ng-show="userPreview.gender==1">Gender: Female</div>
+                <div ng-show="userPreview.gender==2">Gender: Other</div>
+            </div>
+            <button class="btn btn-primary pull-right" ng-click="inviteFriend(authorName)" ng-hide="userPreview.isFriend || userPreview.hasPendingRequest || userPreview.username == username">Invite</button>
+        </span>
+    </div>
 </div>

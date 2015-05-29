@@ -1,7 +1,7 @@
 ﻿<div class="row">
 <div class="col-lg-12">
     <img ng-src="{{userData.profileImageData || '../img/default.jpg'}}" class="img-circle" width="200" height="200">
-    <a href="#"><h1>{{userData.username}}</h1></a>
+    <a href="#/user/{{userData.username}}"><h1>{{userData.username}}</h1></a>
     <div class="btn-group">
         <button type="button" ng-click="LoadHomePage()" class="btn btn-default">
             <span class="glyphicon glyphicon-home"></span>
@@ -43,7 +43,7 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">
-                Frieds - total: <a href="#/user/friends">{{friendsPreview.totalCount}}</a>
+                Friends - total: <a href="#/user/friends">{{friendsPreview.totalCount}}</a>
             </h3>
         </div>
         <div class="panel-body">

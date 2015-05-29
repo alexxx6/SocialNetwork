@@ -2,26 +2,28 @@
     <div class="well col-lg-3 aside-nav col-sm-12 text-center" ng-include="'partials/aside.html'">
     </div>
     <div class="col-lg-9 col-sm-12" ng-controller="UserController">
-        <div class="col-lg-12">
-            <div class="coverImgView" ng-style="{'background-image': 'url('+person.coverImageData+')' }" >
-                <div class="text-center col-xs-12 col-sm-4 col-md-2 col-lg-2">
-                    <img ng-src="{{person.profileImageData || '../img/default.jpg'}}" class="img-thumbnail" width="130px" height="130px">
-                    <div>{{person.username}}</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="btn-group-vertical pull-right">
-                        <button ng-hide="person.isFriend || person.hasPendingRequest || person.username == username" ng-click="sendFriendRequest()">Sent friend request</button>
-                        <button ng-show="person.hasPendingRequest && !person.isFriend">Friend request is sent</button>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="coverImgView" ng-style="{'background-image': 'url('+person.coverImageData+')' }">
+                    <div class="text-center col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                        <img class="personImg" ng-src="{{person.profileImageData || '../img/default.jpg'}}" class="img-thumbnail">
+                        <div>{{person.username}}</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="btn-group-vertical pull-right">
+                            <button ng-hide="person.isFriend || person.hasPendingRequest || person.username == username" ng-click="sendFriendRequest()">Sent friend request</button>
+                            <button ng-show="person.hasPendingRequest && !person.isFriend">Friend request is sent</button>
+                        </div>
                     </div>
                 </div>
             </div>
-         </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-push-8 col-lg-push-8">
             <div class="col-lg-12" ng-show="person.isFriend">
                 <div class=" panel panel-info text-center">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                           {{person.username}}`s Frieds - total: <a href="#/user/{{person.username}}/friends">{{friendFriendsPreview.totalCount}}</a>
+                            {{person.username}}`s Friends - total: <a href="#/user/{{person.username}}/friends">{{friendFriendsPreview.totalCount}}</a>
                         </h3>
                     </div>
                     <div class="panel-body">

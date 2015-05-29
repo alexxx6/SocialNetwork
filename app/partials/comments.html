@@ -1,0 +1,57 @@
+﻿<div class="well" ng-repeat="comment in post.comments">
+    <div class="row">
+        <div class="col-xs-8 col-sm-10 col-md-11 col-lg-11">
+            <img ng-src="{{comment.author.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="80px" />
+            <a ng-init="authorName = comment.author.username" ns-popover ns-popover-template="partials/popup.html" ns-popover-trigger="mouseenter" ns-popover-theme="ns-popover-tooltip-theme">
+                {{comment.author.username}}
+            </a>
+            <time>{{comment.date | date:'medium'}}</time>
+        </div>
+        <div class="pull-right col-sm-1">
+            <div class="btn-group" ng-show="comment.author.username === username">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu commentControllBtn" role="menu">
+                    <li class="text-center">
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-warning" ng-click="editableComentForm.$show()" ng-show="!editableComentForm.$visible">Edit</button>
+                            <button class="btn btn-danger" ng-click="deletePostComment($event, post.id, comment.id)">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <form editable-form name="editableComentForm" onaftersave="editPostComment(post.id, comment.id, comment.commentContent)">
+        <div>
+            <span editable-text="comment.commentContent" e-name="commentContent" e-required>{{comment.commentContent}}</span>
+        </div>
+        <div class="btn-group">
+            <span ng-show="editableComentForm.$visible">
+                <button type="submit" class="btn btn-primary" ng-disabled="editableComentForm.$waiting">
+                    Save
+                </button>
+                <button type="button" class="btn btn-default" ng-disabled="editableComentForm.$waiting" ng-click="editableComentForm.$cancel()">
+                    Cancel
+                </button>
+            </span>
+        </div>
+    </form>
+    <div class="row">
+        <div class="pull-right col-sm-1" ng-init="isLiked=comment.liked">
+            <div><a href="" ng-click="getCommentLikes(post.id, comment.id)">{{comment.likesCount}}</a></div>
+            <span ng-show="((post.author.isFriend && post.wallOwner.isFriend) || (post.author.isFriend && post.wallOwner.username==username) || post.author.username==username)">
+                <a href="" ng-hide="isLiked" ng-click="likePostComment(post.id, comment.id); comment.likesCount=comment.likesCount+1; isLiked=!isLiked">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    Like
+                </a>
+                <a href="" ng-show="isLiked" ng-click="unlikePostComment(post.id, comment.id); comment.likesCount=comment.likesCount-1; isLiked=!isLiked">
+                    <span class=" glyphicon glyphicon-thumbs-down">
+                    </span>
+                    Unlike
+                </a>
+            </span>
+        </div>
+    </div>
+</div>

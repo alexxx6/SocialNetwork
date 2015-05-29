@@ -48,12 +48,30 @@ textarea {
     background-color: #DFDFC6;
 }
 
-.coverImgView>div:first-child {    
-    color: #fff;
-    font-weight: 900;
-}
+    .coverImgView > div:first-child {
+        color: #fff;
+        font-weight: 900;
+    }
 
 .postLikeList {
     list-style-type: none;
     margin-bottom: 10px;
+}
+
+.popupInfo {
+    height: 73%;
+}
+
+.postControllBtn, .commentControllBtn {
+    min-width: 85px !important;
+}
+
+.popupContainer {
+    height: 100%;
+    width: 98%;
+}
+
+.personImg {
+    width: 150px;
+    height: 140px;
 }

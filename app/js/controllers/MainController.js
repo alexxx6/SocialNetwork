@@ -5,55 +5,55 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
 
     $scope.username = authentication.GetUsername();
 
-    if ($scope.username) {
+    if (authentication.isLoggedIn()) {
         var headers = authentication.GetHeaders();
 
-        profileServices.GetUserProfile(headers, function (userData) {
+        profileServices.GetUserProfile(headers, function(userData) {
             $scope.userData = userData;
         });
-        profileServices.GetUserFeed(headers, function (postsData) {
+        profileServices.GetUserFeed(headers, function(postsData) {
             $scope.postsData = postsData;
         });
 
         function getUserFriendsPreview() {
-            profileServices.GetUserFriendsPreview(headers, function (friendsPreview) {
+            profileServices.GetUserFriendsPreview(headers, function(friendsPreview) {
                 $scope.friendsPreview = friendsPreview;
             });
         }
 
         getUserFriendsPreview();
-        
 
-        profileServices.GetAllFriends(headers, function (friends) {
+
+        profileServices.GetAllFriends(headers, function(friends) {
             $scope.friends = friends;
         });
 
         function getFriendRequests() {
-            profileServices.GetFriendRequests(headers, function (friendRequests) {
+            profileServices.GetFriendRequests(headers, function(friendRequests) {
                 $scope.friendRequests = friendRequests;
             });
         }
 
         getFriendRequests();
 
-        $scope.ApproveFriendRequest = function (requestId) {
-            profileServices.ApproveFriendRequest(requestId, headers, function () {
+        $scope.ApproveFriendRequest = function(requestId) {
+            profileServices.ApproveFriendRequest(requestId, headers, function() {
                 getUserFriendsPreview();
                 getFriendRequests();
             });
         };
-        $scope.RejectFriendRequest = function (requestId) {
-            profileServices.RejectFriendRequest(requestId, headers, function () {
+        $scope.RejectFriendRequest = function(requestId) {
+            profileServices.RejectFriendRequest(requestId, headers, function() {
                 getFriendRequests();
             });
         };
-        $scope.LoadHomePage = function () {
+        $scope.LoadHomePage = function() {
             $location.path('/user/home');
         };
-        $scope.LoadEditProfilePage = function () {
+        $scope.LoadEditProfilePage = function() {
             $location.path('/user/edit/profile');
         };
-        $("#uploadProfileImgBtn").click(function () {
+        $("#uploadProfileImgBtn").click(function() {
             $("#profileImgFile").trigger('click');
         });
         (function uploadImages() {
@@ -61,10 +61,10 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
             var MAX_SISE_OF_COVER_IMG = 1048576;
             var reader = new FileReader();
 
-            $('#profileImgFile').change(function () {
+            $('#profileImgFile').change(function() {
                 var profileImg = this.files[0];
                 if (profileImg.type.match(/image\/jpeg/) && profileImg.size <= MAX_SISE_OF_PROFILE_IMG) {
-                    reader.onload = function () {
+                    reader.onload = function() {
                         $('.profileImg').attr('src', reader.result);
                         $scope.userData.profileImageData = reader.result;
                     };
@@ -74,32 +74,30 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
                 }
             });
 
-            $("#uploaCoverImgdBtn").click(function () {
+            $("#uploaCoverImgdBtn").click(function() {
                 $("#coverImgFile").trigger('click');
             });
-            $('#coverImgFile').change(function () {
+            $('#coverImgFile').change(function() {
                 var coverImage = this.files[0];
                 if (coverImage.type.match(/image\/.*/) && coverImage.size <= MAX_SISE_OF_COVER_IMG) {
-                    reader.onload = function () {
+                    reader.onload = function() {
                         $('.coverImage').attr('src', reader.result);
                         $scope.userData.coverImageData = reader.result;
                     };
-                reader.readAsDataURL(coverImage);
+                    reader.readAsDataURL(coverImage);
                 } else {
                     notifyService.showError("Invalid file format or size.");
                 }
             });
         })();
-        $scope.loadChangePasswordPage = function () {
+        $scope.loadChangePasswordPage = function() {
             $location.path('/user/edit/password');
         };
 
-        $scope.loadFriendsPage = function () {
+        $scope.loadFriendsPage = function() {
             $location.path('/user/friends');
         };
-    }
-    var path = $location.path();
-    if ((path.indexOf("user") !== -1) && !authentication.isLoggedIn()) {
+    } else {
         $location.path('/');
     }
 });

@@ -35,6 +35,12 @@ socialNetwork.factory('userServices', function ($http, baseServiceUrl) {
                 success(friendFriends);
             });
     };
+    userServices.getUserPreview = function (userName, headers, success) {
+        $http.get(userServicesUrl + '/' + userName + '/preview', { headers: headers })
+            .success(function (userPreview) {
+                success(userPreview);
+            });
+    };
 
     return userServices;
 });

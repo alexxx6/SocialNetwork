@@ -1,59 +1,72 @@
 ﻿<div class="jumbotron" ng-repeat="post in postsData" ng-controller="PostController">
-    <div class=" row">
-    <div class="col-xs-8 col-sm-10 col-md-11 col-lg-11">
-        <img ng-src="{{post.author.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="110px" />
-        <a popup-show popup-html="" popup-placement="right" popup-label="{{post.author.username}}"></a>
-        <time>{{post.date | date:'medium'}}</time>
-    </div>
-    <div class="pull-right col-sm-1">
-        <div class="btn-group" ng-show="post.author.username === username">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><button class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">Edit</button></li>
-                <li><button class="btn btn-default" ng-click="deletePost($event, post.id)">Delete</button></li>
-            </ul>
-        </div>
-    </div>
-</div>
-    <form editable-form name="editableForm" onaftersave="editPost(post.id, post.postContent)">
-        <div>
-            <span editable-text="post.postContent" e-name="postContent" e-required>{{post.postContent}}</span>
-        </div>
-        <div class="btn-group">
-            <span ng-show="editableForm.$visible">
-                <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-                    Save
-                </button>
-                <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-                    Cancel
-                </button>
-            </span>
-        </div>
-    </form>
     <div class="row">
-        <div class="pull-right col-sm-1" ng-init="isLiked=post.liked">
-            <a href="" ng-click="getPostLikes(post.id)">{{post.likesCount}}</a>
-            <span ng-show="((post.author.isFriend && post.wallOwner.isFriend) || (post.author.isFriend && post.wallOwner.username==username) || post.author.username==username)">
-                <a href="" ng-hide="isLiked" ng-click="likePost(post.id); post.likesCount=post.likesCount+1; isLiked=!isLiked">
-                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                    Like
+        <div class="row">
+            <div class="col-xs-8 col-sm-10 col-md-11 col-lg-11">
+                <img ng-src="{{post.author.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="110px" />
+                <a ng-init="authorName = post.author.username" ns-popover ns-popover-template="partials/popup.html" ns-popover-trigger="mouseenter" ns-popover-theme="ns-popover-tooltip-theme">
+                    {{post.author.username}}
                 </a>
-                <a href="" ng-show="isLiked" ng-click="unlikePost(post.id); post.likesCount=post.likesCount-1; isLiked=!isLiked">
-                    <span class=" glyphicon glyphicon-thumbs-down">
-                    </span>
-                    Unlike
-                </a>
-            </span>
+                <time>{{post.date | date:'medium'}}</time>
+            </div>
+            <div class="pull-right col-sm-1">
+                <div class="btn-group" ng-show="post.author.username === username">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu postControllBtn" role="menu">
+                        <li class="text-center">
+                            <div class="btn-group-vertical">
+                                <button class="btn btn-warning" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">Edit</button>
+                                <button class="btn btn-danger" ng-click="deletePost($event, post.id)">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-12" ng-show="(post.author.isFriend && post.wallOwner.isFriend)">
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Coment</button>
-            </span>
+        <form editable-form name="editableForm" onaftersave="editPost(post.id, post.postContent)">
+            <div>
+                <span editable-text="post.postContent" e-name="postContent" e-required>{{post.postContent}}</span>
+            </div>
+            <div class="btn-group">
+                <span ng-show="editableForm.$visible">
+                    <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                        Cancel
+                    </button>
+                </span>
+            </div>
+        </form>
+        <div class="row">
+            <div class="pull-right col-sm-1" ng-init="isLiked=post.liked">
+                <div><a href="" ng-click="getPostLikes(post.id)">{{post.likesCount}}</a></div>
+                <span ng-show="((post.author.isFriend && post.wallOwner.isFriend) || (post.author.isFriend && post.wallOwner.username==username) || post.author.username==username)">
+                    <a href="" ng-hide="isLiked" ng-click="likePost(post.id); post.likesCount=post.likesCount+1; isLiked=!isLiked">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        Like
+                    </a>
+                    <a href="" ng-show="isLiked" ng-click="unlikePost(post.id); post.likesCount=post.likesCount-1; isLiked=!isLiked">
+                        <span class=" glyphicon glyphicon-thumbs-down">
+                        </span>
+                        Unlike
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-12" ng-show="((post.author.isFriend && post.wallOwner.isFriend) || (post.author.isFriend && post.wallOwner.username==username) || post.author.username==username)">
+            <div class=" input-group">
+                <input type="text" class="form-control" ng-model="newComment.commentContent">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-disabled="!newComment.commentContent" ng-click="addPostComment(post.id)">Comment</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-12" ng-include="'/partials/comments.html'"></div>
+        <div class="col-lg-12">
+            <a class="pull-right" ng-show="post.comments.length == 3" ng-click="getAllPostComments(post.id)">More</a>
+            <a class="pull-right" ng-show="post.comments.length > 3" ng-click="hidePostCommensts(post.id)">Hide</a>
         </div>
     </div>
 </div>

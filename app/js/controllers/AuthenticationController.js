@@ -70,7 +70,7 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
                 notifyService.showInfo("Successful Logout!");
                 ClearData();
                 authentication.ClearCredentials();
-                $route.reload();
+                $location.path('/');
             });
     };
 });
