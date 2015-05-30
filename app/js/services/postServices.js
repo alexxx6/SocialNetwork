@@ -2,18 +2,21 @@
 
 socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
     var postServices = {};
-    
+
     var postServicesUrl = baseServiceUrl + "/Posts";
 
     postServices.PublishPost = function (postsData, headers, success) {
         $http.post(postServicesUrl, postsData, { headers: headers })
-            .success(function(data, status, headers, config) {
+            .success(function (data, status, headers, config) {
                 success(data);
             });
     };
 
-    postServices.EditPost = function (postId, post, headers, error) {
+    postServices.EditPost = function (postId, post, headers, success, error) {
         $http.put(postServicesUrl + '/' + postId, post, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data);
+            })
             .error(error);
     };
 
@@ -34,7 +37,7 @@ socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
 
     postServices.getPostLikes = function (postId, headers, success) {
         $http.get(postServicesUrl + '/' + postId + '/likes', { headers: headers })
-            .success(function(data, status, headers, config) {
+            .success(function (data, status, headers, config) {
                 success(data);
             });
     };
@@ -46,16 +49,20 @@ socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
             });
     };
 
-    postServices.editPostComment = function(postId, commentId, comment, headers, error) {
+    postServices.editPostComment = function (postId, commentId, comment, headers, success, error) {
         $http.put(postServicesUrl + '/' + postId + '/comments/' + commentId, comment, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data);
+            })
             .error(error);
     };
 
-    postServices.deletePostComment = function (postId, commentId, headers, success) {
+    postServices.deletePostComment = function (postId, commentId, headers, success, error) {
         $http.delete(postServicesUrl + '/' + postId + '/comments/' + commentId, { headers: headers })
-            .success(function (data, status, headers, config) {
+            .success(function(data, status, headers, config) {
                 success();
-            });
+            })
+            .error(error);
     };
 
     postServices.likePostComment = function (postId, commentId, headers) {

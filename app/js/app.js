@@ -45,34 +45,6 @@ socialNetwork.config(function ($routeProvider, ngDialogProvider) {
             templateUrl: 'partials/friendsPage.html',
             controller: 'UserController'
         })
-        .when('/user/ads/delete/:id', {
-            templateUrl: 'templates/delete-ad.html',
-            controller: 'MainController'
-        })
-        .when('/admin/home', {
-            templateUrl: 'templates/admin-ads.html',
-            controller: 'MainController'
-        })
-        .when('/admin/ads', {
-            templateUrl: 'templates/user-ads.html',
-            controller: 'MainController'
-        })
-        .when('/admin/profile', {
-            templateUrl: 'templates/edit-user.html',
-            controller: 'MainController'
-        })
-        .when('/admin/ads/publish', {
-            templateUrl: 'templates/publish-ad.html',
-            controller: 'MainController'
-        })
-        .when('/admin/ads/edit/:id', {
-            templateUrl: 'templates/edit-ad.html',
-            controller: 'MainController'
-        })
-        .when('/admin/ads/delete/:id', {
-            templateUrl: 'templates/delete-ad.html',
-            controller: 'MainController'
-        })
         .otherwise({ redirectTo: '/user/home' });
 
     ngDialogProvider.setDefaults({

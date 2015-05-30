@@ -15,7 +15,6 @@ socialNetwork.controller('AuthenticationController', function ($scope, $location
     $scope.login = function () {
         authentication.Login($scope.loginData,
             function (serverData) {
-                //notifyService.showInfo("Successful Login!");
                 authentication.SetCredentials(serverData);
                 ClearData();
                 $location.path('/user/home');

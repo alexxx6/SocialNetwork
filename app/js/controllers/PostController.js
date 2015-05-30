@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 socialNetwork.controller('PostController', function ($scope, $route, authentication,
-    profileServices, postServices, ngDialog) {
+    profileServices, postServices, ngDialog, notifyService) {
 
     if (authentication.isLoggedIn()) {
 
@@ -29,12 +29,18 @@ socialNetwork.controller('PostController', function ($scope, $route, authenticat
                     return post.id !== postId;
                 });
                 $scope.postsData = filtredPosts;
+                notifyService.showInfo("Successful Post Delete!");
+            }, function(error) {
+                notifyService.showError("Unsuccessful Post Delete!", error);
             });
         };
         $scope.editPost = function (postId, postContent) {
             var post = {};
             post.postContent = postContent;
-            postServices.EditPost(postId, post, headers, function(error) {
+            postServices.EditPost(postId, post, headers, function() {
+                notifyService.showInfo("Successful Post Edit!");
+            }, function (error) {
+                notifyService.showError("Unsuccessful Post Edit!", error);
                 $scope.editableForm.$setError('Post', error.message);
             });
         };
@@ -64,8 +70,11 @@ socialNetwork.controller('PostController', function ($scope, $route, authenticat
         $scope.editPostComment = function (postId, commentId, commentContent) {
             var comment = {};
             comment.commentContent = commentContent;
-            postServices.editPostComment(postId, commentId, comment, headers, function (error) {
-                $scope.editableForm.$setError('Comment', error.message);
+            postServices.editPostComment(postId, commentId, comment, headers, function () {
+                notifyService.showInfo("Successful Comment Edit!");
+            }, function (error) {
+                notifyService.showError("Unsuccessful Comment Edit!", error);
+                $scope.editableComentForm.$setError('Comment', error.message);
             });
         };
 
@@ -83,6 +92,9 @@ socialNetwork.controller('PostController', function ($scope, $route, authenticat
                     filtredPosts.push(post);
                 });
                 $scope.postsData = filtredPosts;
+                notifyService.showInfo("Successful Comment Delete!");
+            }, function (error) {
+                notifyService.showError("Unsuccessful Comment Delete!", error);
             });
         };
 
