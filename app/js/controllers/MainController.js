@@ -4,6 +4,8 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
                     profileServices, postServices, userServices, notifyService) {
 
     $scope.username = authentication.GetUsername();
+    var startPostId = 0;
+    var isLoaded;
 
     if (authentication.isLoggedIn()) {
         var headers = authentication.GetHeaders();
@@ -11,9 +13,26 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
         profileServices.GetUserProfile(headers, function(userData) {
             $scope.userData = userData;
         });
-        profileServices.GetUserFeed(headers, function(postsData) {
-            $scope.postsData = postsData;
-        });
+
+        function getFeed() {
+            if ($location.path() === '/user/home') {
+                profileServices.GetUserFeed(headers, startPostId, function(postsData) {
+
+                    if (!$scope.postsData) {
+                        $scope.postsData = postsData;
+                    } else {
+                        $.merge($scope.postsData, postsData);
+                    }
+
+                    if (postsData.length) {
+                        startPostId = postsData[postsData.length - 1].id;
+                        isLoaded = true;
+                    }
+                });
+            }
+        };
+
+        getFeed();
 
         function getUserFriendsPreview() {
             profileServices.GetUserFriendsPreview(headers, function(friendsPreview) {
@@ -97,6 +116,15 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
         $scope.loadFriendsPage = function() {
             $location.path('/user/friends');
         };
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100 && isLoaded) {
+                if ($location.path() === '/user/home') {
+                    getFeed();
+                    isLoaded = false;
+                }
+            }
+        });
     } else {
         $location.path('/');
     }

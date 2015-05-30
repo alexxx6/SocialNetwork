@@ -11,8 +11,9 @@ socialNetwork.factory('userServices', function ($http, baseServiceUrl) {
                 success(findPeople);
             });
     };
-    userServices.getUserPosts = function (userName, headers, success) {
-        $http.get(userServicesUrl + '/' + userName + '/wall?StartPostId=&PageSize=5', { headers: headers })
+    userServices.getUserPosts = function (userName, startPostId, headers, success) {
+        startPostId = startPostId || '';
+        $http.get(userServicesUrl + '/' + userName + '/wall?StartPostId=' + startPostId + '&PageSize=5', { headers: headers })
             .success(function (wallData) {
                 success(wallData);
             });

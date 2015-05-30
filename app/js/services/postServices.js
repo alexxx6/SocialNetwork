@@ -12,9 +12,7 @@ socialNetwork.factory('postServices', function ($http, baseServiceUrl) {
             });
     };
 
-    postServices.EditPost = function (postId, postContent, headers, error) {
-        var post = {};
-        post.postContent = postContent;
+    postServices.EditPost = function (postId, post, headers, error) {
         $http.put(postServicesUrl + '/' + postId, post, { headers: headers })
             .error(error);
     };

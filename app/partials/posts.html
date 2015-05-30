@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xs-8 col-sm-10 col-md-11 col-lg-11">
                 <img ng-src="{{post.author.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="110px" />
-                <a ng-init="authorName = post.author.username" ns-popover ns-popover-template="partials/popup.html" ns-popover-trigger="mouseenter" ns-popover-theme="ns-popover-tooltip-theme">
+                <a ng-init="authorName = comment.author.username" ng-controller="UserController" ng-mouseover="getUserPreview(post.author.username)" ns-popover ns-popover-template="partials/popup.html" ns-popover-trigger="mouseenter" ns-popover-theme="ns-popover-tooltip-theme">
                     {{post.author.username}}
                 </a>
                 <time>{{post.date | date:'medium'}}</time>

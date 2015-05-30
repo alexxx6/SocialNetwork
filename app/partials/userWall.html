@@ -1,7 +1,7 @@
-﻿<div class="container-fluid">
+﻿<div class="container-fluid" ng-controller="UserController" ng-init="getUserWall()">
     <div class="well col-lg-3 aside-nav col-sm-12 text-center" ng-include="'partials/aside.html'">
     </div>
-    <div class="col-lg-9 col-sm-12" ng-controller="UserController">
+    <div class="col-lg-9 col-sm-12">
         <div class="row">
             <div class="col-lg-12">
                 <div class="coverImgView" ng-style="{'background-image': 'url('+person.coverImageData+')' }">

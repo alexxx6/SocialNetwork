@@ -12,8 +12,9 @@ socialNetwork.factory('profileServices', function ($http, baseServiceUrl) {
             });
     }
 
-    profileServices.GetUserFeed = function (headers, success) {
-        $http.get(profileServicesUrl + '/feed?StartPostId=&PageSize=5', { headers: headers })
+    profileServices.GetUserFeed = function (headers, startPostId, success) {
+        startPostId = startPostId || '';
+        $http.get(profileServicesUrl + '/feed?StartPostId=' + startPostId + '&PageSize=5', { headers: headers })
             .success(function (data, status, headers, config) {
                 success(data);
             });
