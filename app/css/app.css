@@ -4,6 +4,8 @@
     height: 75px;
     background-size: contain;
     line-height: 130px;
+    color: #fff;
+    font-weight: 900;
 }
 
 .label-as-badge {
