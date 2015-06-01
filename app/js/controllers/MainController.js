@@ -125,7 +125,7 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
                 }
             }
         });
-    } else {
+    } else if ($location.path() !== '/register') {
         $location.path('/');
     }
 });
