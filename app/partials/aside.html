@@ -48,7 +48,7 @@
         </div>
         <div class="panel-body">
             <div class="frindsPreview">
-                <a href="#/user/{{friend.username}}" ng-repeat="friend in friendsPreview.friends" ng-style="{'background-image': 'url({{friend.profileImage || '../img/default.jpg'}})' }">
+                <a href="#/user/{{friend.username}}" ng-repeat="friend in friendsPreview.friends" ng-style="{'background-image': 'url({{friend.profileImageData || '../img/default.jpg'}})' }">
                     <span>{{friend.username}}</span>
                 </a>
             </div>
