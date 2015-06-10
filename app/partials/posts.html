@@ -3,9 +3,16 @@
         <div class="row">
             <div class="col-xs-8 col-sm-10 col-md-11 col-lg-11">
                 <img ng-src="{{post.author.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="110px" />
-                <a ng-init="authorName = comment.author.username" ng-controller="UserController" ng-mouseover="getUserPreview(post.author.username)" ns-popover ns-popover-template="partials/popup.html" ns-popover-trigger="mouseenter" ns-popover-theme="ns-popover-tooltip-theme">
+                <a href="#/user/{{post.author.username}}" ng-controller="UserController" ng-mouseover="getUserPreview(post.author.username)" ns-popover ns-popover-template="partials/popup.html" ns-popover-trigger="mouseenter" ns-popover-theme="ns-popover-tooltip-theme" ns-popover-group="profilePreviewPopover" ns-popover-timeout="0.5">
                     {{post.author.username}}
                 </a>
+                <span ng-hide="post.author.username == post.wallOwner.username">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    <a href="#/user/{{post.wallOwner.username}}" ng-controller="UserController" ng-mouseover="getUserPreview(post.wallOwner.username)" ns-popover ns-popover-template="partials/popup.html" ns-popover-trigger="mouseenter" ns-popover-theme="ns-popover-tooltip-theme" ns-popover-group="profilePreviewPopover" ns-popover-timeout="0.5">
+                        {{post.wallOwner.username}}
+                    </a>
+                </span>
+                <span ng-show="post.author.username == post.wallOwner.username">Said</span>
                 <time>{{post.date | date:'medium'}}</time>
             </div>
             <div class="pull-right col-sm-1">

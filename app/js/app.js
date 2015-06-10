@@ -5,12 +5,16 @@ var socialNetwork = angular.module('SocialNetwork', ['ngRoute', 'xeditable', 'ng
 socialNetwork.constant('baseServiceUrl', 'http://softuni-social-network.azurewebsites.net/api');
 //socialNetwork.constant('baseServiceUrl', 'http://localhost:49399/api');
 
-socialNetwork.run(function (editableOptions) {
+socialNetwork.run(function (editableOptions, $location) {
     editableOptions.theme = 'bs3';
+
+    if ($location.path() === '/') {
+        $location.path('/user/home');
+    }
 });
 
 
-socialNetwork.config(function ($routeProvider, ngDialogProvider) {
+socialNetwork.config(function ($routeProvider, ngDialogProvider, $httpProvider, $provide) {
 
     $routeProvider
         .when('/', {
@@ -54,4 +58,21 @@ socialNetwork.config(function ($routeProvider, ngDialogProvider) {
         closeByEscape: true,
         appendTo: false
     });
+
+    $provide.factory('HttpInterceptor', function ($q, $location, notifyService) {
+        return {
+            responseError: function (rejection) {
+
+                if (rejection.status === 401 && $location.path() !== '/') {
+                    localStorage.clear();
+                    $location.path('/');
+                    notifyService.showError('Please login first');
+                }
+
+                return $q.reject(rejection);
+            }
+        };
+    });
+
+    $httpProvider.interceptors.push('HttpInterceptor');
 });

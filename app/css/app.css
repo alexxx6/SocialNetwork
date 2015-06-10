@@ -3,16 +3,23 @@
     width: 75px;
     height: 75px;
     background-size: contain;
-    line-height: 130px;
+    padding-top: 55px;
     color: #fff;
     font-weight: 900;
+}
+
+.frindsPreview span {
+    width: 60px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
 }
 
 .label-as-badge {
     border-radius: 50px;
 }
 
-.friendRequestsList:hover, .searchUserList:hover {
+.friendRequestsList:hover, .searchUserList:hover, .friendsList:hover {
     background: #87cefa;
 }
 
@@ -38,9 +45,15 @@ textarea {
 .friendsList {
     list-style-type: none;
     display: inline-block;
-    width: 220px;
+    width: 210px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-top: 15px;
 }
+
+    .friendsList div:last-child {
+        line-height: 80px;
+    }
 
 .coverImgView {
     height: 200px;
@@ -76,4 +89,8 @@ textarea {
 .personImg {
     width: 150px;
     height: 140px;
+}
+
+time {
+    display: block;
 }

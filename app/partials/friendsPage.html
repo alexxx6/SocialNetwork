@@ -10,8 +10,10 @@
             <ul>
                 <li class="friendsList" ng-repeat="friend in friends | filter:filterByName:strict">
                     <a href="#/user/{{friend.username}}">
-                        <img ng-src="{{friend.profileImageData || '../img/default.jpg'}}" width="100px" height="100px" />
-                        <span>{{friend.username}}</span>
+                        <div class="col-lg-6">
+                            <img ng-src="{{friend.profileImageData || '../img/default.jpg'}}" width="100px" height="100px" />
+                        </div>
+                        <div class="col-lg-6">{{friend.username}}</div>
                     </a>
                 </li>
             </ul>

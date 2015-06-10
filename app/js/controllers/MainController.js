@@ -5,7 +5,7 @@ socialNetwork.controller('MainController', function ($scope, $location, authenti
 
     $scope.username = authentication.GetUsername();
     var startPostId = 0;
-    var isLoaded;
+    var isLoaded;    
 
     if (authentication.isLoggedIn()) {
         var headers = authentication.GetHeaders();

@@ -4,7 +4,7 @@
         <img ng-src="{{userPreview.profileImageData || '../img/default.jpg'}}" class="pull-left img-thumbnail" width="150px" />
         <span>
             <div class="popupInfo">
-                <div>Username: <a href="#/user/{{userPreview.username}}">{{userPreview.username}}</a></div>
+                <div>Username:{{userPreview.username}}</div>
                 <div>Name: {{userPreview.name}}</div>
                 <div ng-show="userPreview.gender==0">Gender: Male</div>
                 <div ng-show="userPreview.gender==1">Gender: Female</div>
